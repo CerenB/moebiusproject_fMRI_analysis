@@ -12,7 +12,7 @@ function opt = getOptionMoebius()
     % group of subjects to analyze
     opt.groups = {''};
     % suject to run in each group
-    opt.subjects = {'001','002','003'};
+    opt.subjects = {'001', '002', '003'};
 
     % we stay in native space (that of the T1)
     opt.space = 'T1w';
@@ -22,13 +22,12 @@ function opt = getOptionMoebius()
                            '..', '..', '..',  'raw');
 
     % task to analyze
-    opt.taskName = 'FEexe'; %FEexe, FEobserv, LipReading
+    opt.taskName = 'FEexe'; % FEexe, FEobserv, LipReading
 
     % Suffix output directory for the saved jobs
     opt.jobsDir = fullfile( ...
                            opt.dataDir, '..', 'derivatives', ...
                            'SPM12_CPPL', 'JOBS', opt.taskName);
-
 
     opt.sliceOrder = [];
     opt.STC_referenceSlice = [];
