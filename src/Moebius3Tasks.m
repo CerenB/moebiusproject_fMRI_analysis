@@ -8,7 +8,7 @@ isMVPA = false;
 cd(fileparts(mfilename('fullpath')));
 
 addpath(fullfile(fileparts(mfilename('fullpath')), '..'));
-warning('off')
+warning('off');
 % addpath(genpath('/Users/battal/Documents/MATLAB/spm12'));
 % spm fmri
 initEnv();
@@ -20,10 +20,10 @@ checkDependencies();
 
 %% Run batches
 
-%bidsCopyRawFolder(opt, 0);
+% bidsCopyRawFolder(opt, 0);
 bidsSTC(opt);
 bidsSpatialPrepro(opt);
-%bidsSmoothing(FWHM, opt);
+% bidsSmoothing(FWHM, opt);
 
 % bidsFFX('specifyAndEstimate', opt, FWHM, isMVPA);
 % bidsFFX('contrasts', opt, FWHM, isMVPA);
