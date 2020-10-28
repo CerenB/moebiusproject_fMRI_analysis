@@ -22,7 +22,7 @@ function opt = getOptionMoebius()
                            '..', '..', '..',  'raw');
 
     % task to analyze
-    opt.taskName = 'FEexe'; % FEexe, FEobserv, LipReading
+    opt.taskName = 'LipReading'; % FEexe, FEobserv, LipReading
 
     % Suffix output directory for the saved jobs
     opt.jobsDir = fullfile( ...

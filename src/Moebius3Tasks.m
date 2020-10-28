@@ -2,14 +2,15 @@ clear;
 clc;
 
 % Smoothing to apply
-FWHM = 6;
+FWHM = 3;
 isMVPA = false;
 
 cd(fileparts(mfilename('fullpath')));
 
 addpath(fullfile(fileparts(mfilename('fullpath')), '..'));
+warning('off')
 % addpath(genpath('/Users/battal/Documents/MATLAB/spm12'));
-
+% spm fmri
 initEnv();
 
 % we add all the subfunctions that are in the sub directories
@@ -19,10 +20,10 @@ checkDependencies();
 
 %% Run batches
 
-bidsCopyRawFolder(opt, 0);
+%bidsCopyRawFolder(opt, 0);
 bidsSTC(opt);
 bidsSpatialPrepro(opt);
-bidsSmoothing(FWHM, opt);
+%bidsSmoothing(FWHM, opt);
 
 % bidsFFX('specifyAndEstimate', opt, FWHM, isMVPA);
 % bidsFFX('contrasts', opt, FWHM, isMVPA);
