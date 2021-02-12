@@ -14,18 +14,18 @@ function opt = getOptionMoebius()
     % suject to run in each group
     opt.subjects = {'004', '005', '006'};
 
-  % Uncomment the lines below to run preprocessing
-  % - don't use realign and unwarp
-  opt.realign.useUnwarp = true;
+    % Uncomment the lines below to run preprocessing
+    % - don't use realign and unwarp
+    opt.realign.useUnwarp = true;
 
-  % we stay in native space (that of the T1)
-  % - in "native" space: don't do normalization
-  opt.space = 'MNI'; % 'individual', 'MNI'
+    % we stay in native space (that of the T1)
+    % - in "native" space: don't do normalization
+    opt.space = 'MNI'; % 'individual', 'MNI'
 
-  % The directory where the data are located
-  opt.dataDir = fullfile(fileparts(mfilename('fullpath')), ...
-                         '..', '..', '..',  'raw');
-  opt.derivativesDir = fullfile(opt.dataDir, '..');
+    % The directory where the data are located
+    opt.dataDir = fullfile(fileparts(mfilename('fullpath')), ...
+                           '..', '..', '..',  'raw');
+    opt.derivativesDir = fullfile(opt.dataDir, '..');
 
     % task to analyze
     opt.taskName = 'FEobserv'; % FEexe, FEobserv, LipReading
@@ -43,9 +43,9 @@ function opt = getOptionMoebius()
     opt.funcVoxelDims = [2.6 2.6 2.6];
 
     opt.parallelize.do = false;
-    
-  %% DO NOT TOUCH
-  opt = checkOptions(opt);
-  saveOptions(opt);
+
+    %% DO NOT TOUCH
+    opt = checkOptions(opt);
+    saveOptions(opt);
 
 end
