@@ -8,3 +8,7 @@
 *.mat
 
 *.ps
+
+src/*.json
+
+src/*.png
