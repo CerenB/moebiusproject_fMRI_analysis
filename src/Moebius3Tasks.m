@@ -1,15 +1,11 @@
 clear;
 clc;
 
-% Smoothing to apply
-FWHM = 3;
-isMVPA = false;
-
 cd(fileparts(mfilename('fullpath')));
 
 addpath(fullfile(fileparts(mfilename('fullpath')), '..'));
 warning('off');
-% addpath(genpath('/Users/battal/Documents/MATLAB/spm12'));
+addpath(genpath('/Users/battal/Documents/MATLAB/spm12'));
 % spm fmri
 initEnv();
 
@@ -19,20 +15,23 @@ opt = getOptionMoebius();
 checkDependencies();
 
 %% Run batches
-
-% bidsCopyRawFolder(opt, 0);
+reportBIDS(opt);
+bidsCopyRawFolder(opt, 0);
+%
+% %
 bidsSTC(opt);
+% % %
 bidsSpatialPrepro(opt);
-% bidsSmoothing(FWHM, opt);
+%
+% % Quality control
+% % anatomicalQA(opt);
+% % bidsResliceTpmToFunc(opt);
+% % functionalQA(opt);
+%
+% % smoothing
+% funcFWHM = 8;
+% bidsSmoothing(funcFWHM, opt);
 
-% bidsFFX('specifyAndEstimate', opt, FWHM, isMVPA);
-% bidsFFX('contrasts', opt, FWHM, isMVPA);
-
-% bidsRealignReslice(opt);
-% bidsSmoothing(FWHM, opt);
-% bidsFFX('specifyAndEstimate', opt, FWHM, isMVPA);
-% bidsFFX('contrasts', opt, FWHM, isMVPA);
-% % bidsResults(opt, FWHM, [], isMVPA);
-% bidsFFX('specifyAndEstimate', opt, 0, isMVPA);
-% bidsFFX('contrasts', opt, 0, isMVPA);
-% bidsResults(opt, FWHM, [], isMVPA);
+% % smoothing
+% funcFWHM = 3;
+% bidsSmoothing(funcFWHM, opt);

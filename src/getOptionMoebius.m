@@ -12,17 +12,23 @@ function opt = getOptionMoebius()
     % group of subjects to analyze
     opt.groups = {''};
     % suject to run in each group
-    opt.subjects = {'001', '002', '003'};
+    opt.subjects = {'004', '005', '006'};
 
-    % we stay in native space (that of the T1)
-    opt.space = 'T1w';
+  % Uncomment the lines below to run preprocessing
+  % - don't use realign and unwarp
+  opt.realign.useUnwarp = true;
 
-    % The directory where the data are located
-    opt.dataDir = fullfile(fileparts(mfilename('fullpath')), ...
-                           '..', '..', '..',  'raw');
+  % we stay in native space (that of the T1)
+  % - in "native" space: don't do normalization
+  opt.space = 'MNI'; % 'individual', 'MNI'
+
+  % The directory where the data are located
+  opt.dataDir = fullfile(fileparts(mfilename('fullpath')), ...
+                         '..', '..', '..',  'raw');
+  opt.derivativesDir = fullfile(opt.dataDir, '..');
 
     % task to analyze
-    opt.taskName = 'LipReading'; % FEexe, FEobserv, LipReading
+    opt.taskName = 'FEobserv'; % FEexe, FEobserv, LipReading
 
     % Suffix output directory for the saved jobs
     opt.jobsDir = fullfile( ...
@@ -35,10 +41,11 @@ function opt = getOptionMoebius()
     % Options for normalize
     % Voxel dimensions for resampling at normalization of functional data or leave empty [ ].
     opt.funcVoxelDims = [2.6 2.6 2.6];
-    opt.space = 'MNI';
 
-    %     % Save the opt variable as a mat file to load directly in the preprocessing
-    %     % scripts
-    %     save('opt.mat', 'opt');
+    opt.parallelize.do = false;
+    
+  %% DO NOT TOUCH
+  opt = checkOptions(opt);
+  saveOptions(opt);
 
 end
