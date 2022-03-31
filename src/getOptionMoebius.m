@@ -12,7 +12,7 @@ function opt = getOptionMoebius()
     % group of subjects to analyze
     opt.groups = {''};
     % suject to run in each group
-    opt.subjects = {'004', '005', '006'};
+    opt.subjects = {'pil003'};
 
     % Uncomment the lines below to run preprocessing
     % - don't use realign and unwarp
@@ -28,12 +28,15 @@ function opt = getOptionMoebius()
     opt.derivativesDir = fullfile(opt.dataDir, '..');
 
     % task to analyze
-    opt.taskName = 'FEobserv'; % FEexe, FEobserv, LipReading
+    opt.taskName = 'somatotopy'; % FEexe, FEobserv, LipReading
 
     % Suffix output directory for the saved jobs
     opt.jobsDir = fullfile( ...
                            opt.dataDir, '..', 'derivatives', ...
-                           'SPM12_CPPL', 'JOBS', opt.taskName);
+                           'cpp_spm', 'JOBS', opt.taskName);
+                       
+    opt.model.file = fullfile(fileparts(mfilename('fullpath')), '..', ...
+                              'model', 'model-somatotopy_pil003_smdl.json');
 
     opt.sliceOrder = [];
     opt.STC_referenceSlice = [];
