@@ -1,0 +1,89 @@
+{
+  "Name": "mototopy",
+  "Description": "contrasts for the mototopy design dataset",
+  "Input": {
+    "task": "mototopy"
+  },
+  "Steps": [
+    {
+      "Level": "run",
+      "Model": {
+        "X": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead",
+          "trans_x", "trans_y", "trans_z", "rot_x", "rot_y", "rot_z"
+        ]
+      },
+      "AutoContrasts": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead"
+        ]
+    },
+    {
+      "Level": "subject",
+      "AutoContrasts": [          
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead"
+        ],
+      "Contrasts": [
+        {
+          "Name": "AllStim",
+          "ConditionList": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead"
+          ],
+          "weights": [1, 1, 1, 1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "Hand_gt_Foot",
+          "ConditionList": [
+            "trial_type.block_hand",
+            "trial_type.block_feet"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "Foot_gt_Hand",
+          "ConditionList": [
+            "trial_type.block_hand",
+            "trial_type.block_feet"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "Lips_gt_Tongue",
+          "ConditionList": [
+            "trial_type.block_tongue",
+            "trial_type.block_lips"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "Tongue_gt_Lips",
+          "ConditionList": [
+            "trial_type.block_tongue",
+            "trial_type.block_lips"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        }
+      ]
+    }
+  ]
+}

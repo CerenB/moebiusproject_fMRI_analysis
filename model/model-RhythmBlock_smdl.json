@@ -1,0 +1,57 @@
+{
+  "Name": "somatotopy",
+  "Description": "contrasts for the somatotopy design dataset",
+  "Input": {
+    "task": "somatotopy"
+  },
+  "Steps": [
+    {
+      "Level": "run",
+      "Model": {
+        "X": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trans_x", "trans_y", "trans_z", "rot_x", "rot_y", "rot_z"
+        ]
+      },
+      "AutoContrasts": [
+        "trial_type.block_hand",
+         "trial_type.block_feet",
+        ]
+    },
+    {
+      "Level": "subject",
+      "AutoContrasts": ["trial_type.block_hand", "trial_type.block_feet" ],
+      "Contrasts": [
+        {
+          "Name": "Hand_gt_Feet",
+          "ConditionList": [
+            "trial_type.block_hand", "trial_type.block_feet"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "Feet_gt_Hand",
+          "ConditionList": [
+            "trial_type.block_hand", "trial_type.block_feet"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "AllStim",
+          "ConditionList": [
+            "trial_type.block_hand", "trial_type.block_feet"
+          ],
+          "weights": [0.5, 0.5],
+          "type": "t"
+        }
+      ]
+    },
+    {
+      "Level": "dataset",
+      "AutoContrasts": ["trial_type.block_hand", "trial_type.block_feet", "Hand_gt_Feet", "Feet_gt_Hand", "AllStim"]
+    }
+  ]
+}
