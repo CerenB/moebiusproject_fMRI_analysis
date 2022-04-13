@@ -26,20 +26,22 @@ bidsSTC(opt);
 % % %
 bidsSpatialPrepro(opt);
 %
-% % Quality control
-anatomicalQA(opt);
-bidsResliceTpmToFunc(opt);
-functionalQA(opt);
+% % % Quality control
+% anatomicalQA(opt);
+% bidsResliceTpmToFunc(opt);
+% functionalQA(opt);
 %
 % % smoothing
 funcFWHM = 6;
 bidsSmoothing(funcFWHM, opt);
 
-% % % smoothing
-funcFWHM = 3;
-bidsSmoothing(funcFWHM, opt);
+% % % % smoothing
+% funcFWHM = 3;
+% bidsSmoothing(funcFWHM, opt);
 
 bidsFFX('specifyAndEstimate', opt, funcFWHM);
+
+% does not work for sequence testing
 bidsFFX('contrasts', opt, funcFWHM);
 
 
