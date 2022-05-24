@@ -3,6 +3,19 @@ clc;
 
 addpath(fullfile(fileparts(mfilename('fullpath')), '..'));
 
+%% remove date suffix + copy source to raw 
+% add bids repo
+run ../lib/CPP_BIDS/checkCppBidsDependencies.m;
+
+% remove data suffix
+filter = struct('sub', 'sub-pil006');
+
+% copy source to raw + remove date suffix
+cfg.dir.output = '/Users/battal/Cerens_files/fMRI/Processed/MoebiusProject/';
+convertSourceToRaw(cfg, 'filter', filter)
+
+% consider removing the cpp-bids repo ! ! ! 
+%%
 % spm fmri
 warning('off');
 addpath(genpath('/Users/battal/Documents/MATLAB/spm12'));
@@ -13,17 +26,11 @@ addpath(genpath('/Users/battal/Documents/MATLAB/bspmview'));
 % add cpp repo
 run ../lib/CPP_BIDS_SPM_pipeline/initCppSpm.m;
 
-% add bids
-addpath(genpath('../lib/CPP_BIDS/src'));
 
 % we add all the subfunctions that are in the sub directories
 opt = getOptionMoebius();
 
-% % remove data suffix
-filter = struct('sub', ['sub-',opt.subjects{1}]);
-% removeDateEntity(opt.dataDir, 'filter', filter)
 
-convertSourceToRaw(cfg, 'filter', filter)
 %% Run batches
 %reportBIDS(opt);
 bidsCopyRawFolder(opt, 1);

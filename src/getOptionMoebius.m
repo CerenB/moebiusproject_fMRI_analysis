@@ -12,7 +12,7 @@ function opt = getOptionMoebius()
     % group of subjects to analyze
     opt.groups = {''};
     % suject to run in each group
-    opt.subjects = {'pil005'};
+    opt.subjects = {'pil006'};
     
     
     % Uncomment the lines below to run preprocessing
