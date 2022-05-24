@@ -1,6 +1,6 @@
 {
-  "Name": "somatotopy",
-  "Description": "contrasts for the somatotopy design dataset",
+  "Name": "somatotopy Only Lips",
+  "Description": "only lips were stimulated in this somatotopy data",
   "Input": {
     "task": "somatotopy"
   },

@@ -1,22 +1,29 @@
 clear;
 clc;
 
-%cd(fileparts(mfilename('fullpath')));
-
 addpath(fullfile(fileparts(mfilename('fullpath')), '..'));
+
+% spm fmri
 warning('off');
 addpath(genpath('/Users/battal/Documents/MATLAB/spm12'));
 
 % bspm fmri
 addpath(genpath('/Users/battal/Documents/MATLAB/bspmview'));
 
-% spm fmri
 % add cpp repo
 run ../lib/CPP_BIDS_SPM_pipeline/initCppSpm.m;
+
+% add bids
+addpath(genpath('../lib/CPP_BIDS/src'));
 
 % we add all the subfunctions that are in the sub directories
 opt = getOptionMoebius();
 
+% % remove data suffix
+filter = struct('sub', ['sub-',opt.subjects{1}]);
+% removeDateEntity(opt.dataDir, 'filter', filter)
+
+convertSourceToRaw(cfg, 'filter', filter)
 %% Run batches
 %reportBIDS(opt);
 bidsCopyRawFolder(opt, 1);
@@ -43,6 +50,9 @@ bidsFFX('specifyAndEstimate', opt, funcFWHM);
 
 % does not work for sequence testing
 bidsFFX('contrasts', opt, funcFWHM);
+bidsResults(opt, funcFWHM);
 
 
-
+% load bspmview
+cd(getFFXdir('pil005', 6, opt));
+bspmview('spmT_0017.nii')

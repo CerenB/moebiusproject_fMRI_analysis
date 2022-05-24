@@ -1,8 +1,8 @@
 {
-  "Name": "mototopy",
-  "Description": "contrasts for the mototopy design dataset",
+  "Name": "somatotopy",
+  "Description": "contrasts for the somatotopy design dataset",
   "Input": {
-    "task": "mototopy"
+    "task": "somatotopy"
   },
   "Steps": [
     {
@@ -82,7 +82,7 @@
           "weights": [1],
           "type": "t"
         },
-        {
+{
           "Name": "Hand_gt_Foot",
           "ConditionList": [
             "trial_type.block_hand",
@@ -116,66 +116,6 @@
             "trial_type.block_lips"
           ],
           "weights": [1, -1],
-          "type": "t"
-        },
-        {
-          "Name": "Hand_gt_All",
-          "ConditionList": [
-          "trial_type.block_hand",
-          "trial_type.block_feet",
-          "trial_type.block_tongue",
-          "trial_type.block_lips",
-          "trial_type.block_forehead"
-          ],
-          "weights": [1, -0.25, -0.25, -0.25, -0.25],
-          "type": "t"
-        },
-        {
-          "Name": "Foot_gt_All",
-          "ConditionList": [
-          "trial_type.block_hand",
-          "trial_type.block_feet",
-          "trial_type.block_tongue",
-          "trial_type.block_lips",
-          "trial_type.block_forehead"
-          ],
-          "weights": [-0.25, 1, -0.25, -0.25, -0.25],
-          "type": "t"
-        },
-        {
-          "Name": "Tongue_gt_All",
-          "ConditionList": [
-          "trial_type.block_hand",
-          "trial_type.block_feet",
-          "trial_type.block_tongue",
-          "trial_type.block_lips",
-          "trial_type.block_forehead"
-          ],
-          "weights": [-0.25, -0.25, 1, -0.25, -0.25],
-          "type": "t"
-        },
-        {
-          "Name": "Lips_gt_All",
-          "ConditionList": [
-          "trial_type.block_hand",
-          "trial_type.block_feet",
-          "trial_type.block_tongue",
-          "trial_type.block_lips",
-          "trial_type.block_forehead"
-          ],
-          "weights": [-0.25, -0.25, -0.25, 1, -0.25],
-          "type": "t"
-        },
-        {
-          "Name": "Forehead_gt_All",
-          "ConditionList": [
-          "trial_type.block_hand",
-          "trial_type.block_feet",
-          "trial_type.block_tongue",
-          "trial_type.block_lips",
-          "trial_type.block_forehead"
-          ],
-          "weights": [-0.25, -0.25, -0.25, -0.25, 1],
           "type": "t"
         }
       ]

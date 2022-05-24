@@ -36,12 +36,35 @@
           "type": "t"
         },
         {
+          "Name": "Hand",
+          "ConditionList": [
+          "trial_type.block_hand"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Feet",
+          "ConditionList": [
+          "trial_type.block_feet"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
           "Name": "Hand_gt_Foot",
           "ConditionList": [
             "trial_type.block_hand",
             "trial_type.block_feet"
           ],
           "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "Foot_gt_Hand",
+          "ConditionList": [
+            "trial_type.block_hand",
+            "trial_type.block_feet"
+          ],
+          "weights": [-1, 1],
           "type": "t"
         }
       ]

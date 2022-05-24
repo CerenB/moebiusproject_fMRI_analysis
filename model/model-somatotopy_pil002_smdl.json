@@ -1,6 +1,6 @@
 {
-  "Name": "somatotopy",
-  "Description": "contrasts for the somatotopy design dataset",
+  "Name": "somatotopy 3body parts with Tasks",
+  "Description": "We collected alternating 3 body parts per run in this dataset",
   "Input": {
     "task": "somatotopy"
   },
@@ -49,7 +49,42 @@
           ],
           "weights": [1, 1, 1, 1, 1],
           "type": "t"
-        }
+        },
+        {
+          "Name": "Hand",
+          "ConditionList": [
+          "trial_type.block_hand"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Feet",
+          "ConditionList": [
+          "trial_type.block_feet"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Nose",
+          "ConditionList": [
+          "trial_type.block_nose"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Lips",
+          "ConditionList": [
+          "trial_type.block_lips"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Forehead",
+          "ConditionList": [
+          "trial_type.block_forehead"],
+          "weights": [1],
+          "type": "t"
+        },
       ]
     }
   ]
