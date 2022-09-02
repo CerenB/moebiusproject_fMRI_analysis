@@ -14,3 +14,5 @@ src/*.json
 src/*.png
 
 src/cfg/
+
+src/.Rhistory
