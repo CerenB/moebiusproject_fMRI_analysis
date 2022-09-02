@@ -4,7 +4,8 @@
 opt = getOptionMoebius();
 
 %re-write model file
-opt.model.file = 
+opt.model.file = fullfile(fileparts(mfilename('fullpath')), '..', ...
+                              'model', 'model-mototopy_audCue_smdl.json');
 
 iSub = 1;
 
