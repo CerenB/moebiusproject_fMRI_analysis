@@ -12,7 +12,7 @@ function opt = getOptionMoebius()
     % group of subjects to analyze
     opt.groups = {''};
     % suject to run in each group
-    opt.subjects = {'pil009'}; 
+    opt.subjects = {'pil010', 'pil011'}; %, 'pil011'
     
     
     % Uncomment the lines below to run preprocessing
@@ -30,8 +30,8 @@ function opt = getOptionMoebius()
 
     % task to analyze
     % FEexe, FEobserv, LipReading, somatotopy, mototopy
-    opt.taskName = 'mototopy';
-%     opt.taskName = 'somatotopy';
+%     opt.taskName = 'mototopy';
+    opt.taskName = 'somatotopy';
     
 %     opt.taskName = 'somatotopyres2p3tr1p5mb3sl68'; 
 %     opt.taskName = 'somatotopyres2tr2p1mb2arc2sl68';
@@ -47,11 +47,15 @@ function opt = getOptionMoebius()
                            'cpp_spm', 'JOBS', opt.taskName);
                        
     opt.model.file = fullfile(fileparts(mfilename('fullpath')), '..', ...
-                              'model', 'model-mototopy_audCue_smdl.json');
+                              'model', 'model-somatotopy_audCueParts_smdl.json'); 
 %     opt.model.file = fullfile(fileparts(mfilename('fullpath')), '..', ...
-%                               'model', 'model-mototopy_pil005_smdl.json');
+%                               'model', 'model-somatotopy_audCueParts1ForeheadReg_smdl.json');  
 %     opt.model.file = fullfile(fileparts(mfilename('fullpath')), '..', ...
-%                               'model', 'model-somatotopy_audCue_smdl.json');
+%                               'model', 'model-mototopy_audCueParts2runs_smdl.json'); 
+%     opt.model.file = fullfile(fileparts(mfilename('fullpath')), '..', ...
+%                               'model', 'model-somatotopy_noCue_smdl.json');
+%     opt.model.file = fullfile(fileparts(mfilename('fullpath')), '..', ...
+%                               'model', 'model-mototopy_audCueParts_smdl.json');
                           
   opt.result.Steps(1) = returnDefaultResultsStructure();
 
@@ -61,12 +65,12 @@ function opt = getOptionMoebius()
 %   pvalue = 0.05;
 %   correction = 'FWE';
   
-  pvalueLow = 0.05; %0.01 0.001
-  correctionLow = 'FWE'; %'none'
+  pvalueLow = 0.001; %0.01 0.001 0.05
+  correctionLow = 'none'; %'none' 'FWE'
   
-% %   % for somatotopy assign pvalue to pvalueLow
-%   pvalue = pvalueLow;
-%   correction = correctionLow;
+% % for somatotopy assign pvalue to pvalueLow
+  pvalue = pvalueLow;
+  correction = correctionLow;
   
   
   % For each contrats, you can adapt:
@@ -77,12 +81,20 @@ function opt = getOptionMoebius()
   %    - 'FDR'
   %    - 'none'
   %
-%     % not working for multiple contrasts   
-%     opt.result.Steps(1).Contrasts(1).Name = 'AllStim';
-%     opt.result.Steps(1).Contrasts(1).MC =  correction;
-%     opt.result.Steps(1).Contrasts(1).p = pvalue;
-%     opt.result.Steps(1).Contrasts(1).k = clusterSize;
-%     %
+  
+% looking at everything at once
+% 
+    opt.result.Steps(1).Contrasts(1).Name = 'AllStim_gt_subjectCue';
+    opt.result.Steps(1).Contrasts(1).MC =  correction;
+    opt.result.Steps(1).Contrasts(1).p = pvalue;
+    opt.result.Steps(1).Contrasts(1).k = clusterSize;
+    
+    opt.result.Steps(1).Contrasts(2).Name = 'AllStim_gt_subjectCue';
+    opt.result.Steps(1).Contrasts(2).MC =  'FWE';
+    opt.result.Steps(1).Contrasts(2).p = 0.05;
+    opt.result.Steps(1).Contrasts(2).k = 50;
+
+   
 %     opt.result.Steps(1).Contrasts(2).Name = 'Hand';
 %     opt.result.Steps(1).Contrasts(2).MC =  correction;
 %     opt.result.Steps(1).Contrasts(2).p = pvalue;
@@ -147,13 +159,59 @@ function opt = getOptionMoebius()
 %     opt.result.Steps(1).Contrasts(14).MC =  correctionLow;
 %     opt.result.Steps(1).Contrasts(14).p = pvalueLow;
 %     opt.result.Steps(1).Contrasts(14).k = clusterSize;   
+% 
+%     opt.result.Steps(1).Contrasts(15).Name = 'cue_gt_Tongue';
+%     opt.result.Steps(1).Contrasts(15).MC =  correctionLow;
+%     opt.result.Steps(1).Contrasts(15).p = pvalueLow;
+%     opt.result.Steps(1).Contrasts(15).k = clusterSize;
+%     
+%     opt.result.Steps(1).Contrasts(16).Name = 'Tongue_gt_cue';
+%     opt.result.Steps(1).Contrasts(16).MC =  correctionLow;
+%     opt.result.Steps(1).Contrasts(16).p = pvalueLow;
+%     opt.result.Steps(1).Contrasts(16).k = clusterSize;
 
-    opt.result.Steps(1).Contrasts(1).Name = 'Tongue_gt_All';
-    opt.result.Steps(1).Contrasts(1).MC =  correctionLow;
-    opt.result.Steps(1).Contrasts(1).p = pvalueLow;
-    opt.result.Steps(1).Contrasts(1).k = clusterSize;
+% % looking at only Forehead
+% 
+%     opt.result.Steps(1).Contrasts(1).Name = 'Forehead';
+%     opt.result.Steps(1).Contrasts(1).MC =  correction;
+%     opt.result.Steps(1).Contrasts(1).p = pvalue;
+%     opt.result.Steps(1).Contrasts(1).k = clusterSize;
+%     
+%     opt.result.Steps(1).Contrasts(2).Name = 'Forehead_gt_All';
+%     opt.result.Steps(1).Contrasts(2).MC =  correctionLow;
+%     opt.result.Steps(1).Contrasts(2).p = pvalueLow;
+%     opt.result.Steps(1).Contrasts(2).k = clusterSize;  
+%     
+%     opt.result.Steps(1).Contrasts(3).Name = 'ForeheadDouble_gt_All';
+%     opt.result.Steps(1).Contrasts(3).MC =  correctionLow;
+%     opt.result.Steps(1).Contrasts(3).p = pvalueLow;
+%     opt.result.Steps(1).Contrasts(3).k = clusterSize; 
+% 
+% %     % weird ?
+%     opt.result.Steps(1).Contrasts(4).Name = 'Forehead_gt_cueAndAll';
+%     opt.result.Steps(1).Contrasts(4).MC =  correction;
+%     opt.result.Steps(1).Contrasts(4).p = pvalue;
+%     opt.result.Steps(1).Contrasts(4).k = clusterSize;
+%     
+%     opt.result.Steps(1).Contrasts(5).Name = 'Forehead2';
+%     opt.result.Steps(1).Contrasts(5).MC =  correction;
+%     opt.result.Steps(1).Contrasts(5).p = pvalue;
+%     opt.result.Steps(1).Contrasts(5).k = clusterSize;
+%     
+%     opt.result.Steps(1).Contrasts(6).Name = 'Forehead2_gt_All';
+%     opt.result.Steps(1).Contrasts(6).MC =  correctionLow;
+%     opt.result.Steps(1).Contrasts(6).p = pvalueLow;
+%     opt.result.Steps(1).Contrasts(6).k = clusterSize;
+%     
+
+% looking at only at Tongue
+
+%     opt.result.Steps(1).Contrasts(1).Name = 'Tongue_gt_All';
+%     opt.result.Steps(1).Contrasts(1).MC =  correctionLow;
+%     opt.result.Steps(1).Contrasts(1).p = pvalueLow;
+%     opt.result.Steps(1).Contrasts(1).k = clusterSize;
     
-% % renaming the contrast order
+% % looking only at the body-part comparison
 % 
 %     opt.result.Steps(1).Contrasts(1).Name = 'Hand_gt_All';
 %     opt.result.Steps(1).Contrasts(1).MC =  correctionLow;
@@ -180,6 +238,16 @@ function opt = getOptionMoebius()
 %     opt.result.Steps(1).Contrasts(5).p = pvalueLow;
 %     opt.result.Steps(1).Contrasts(5).k = clusterSize;
 %     
+%     opt.result.Steps(1).Contrasts(6).Name = 'cue_gt_Tongue';
+%     opt.result.Steps(1).Contrasts(6).MC =  correctionLow;
+%     opt.result.Steps(1).Contrasts(6).p = pvalueLow;
+%     opt.result.Steps(1).Contrasts(6).k = clusterSize;
+%     
+%     opt.result.Steps(1).Contrasts(7).Name = 'Tongue_gt_cue';
+%     opt.result.Steps(1).Contrasts(7).MC =  correctionLow;
+%     opt.result.Steps(1).Contrasts(7).p = pvalueLow;
+%     opt.result.Steps(1).Contrasts(7).k = clusterSize;
+% %     
 %   % Specify how you want your output (all the following are on false by default)
 %   opt.result.Steps(1).Output.png = true();
 % 
