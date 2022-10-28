@@ -1,0 +1,260 @@
+{
+  "Name": "AuditoryCueParts1ForeheadReg",
+  "Description": "contrasts for the mototopy design dataset",
+  "Input": {
+    "task": "somatotopy"
+  },
+  "Steps": [
+    {
+      "Level": "run",
+      "Model": {
+        "X": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead",
+          "trial_type.block_forehead2",
+          "trial_type.hand_subjectCue",
+          "trial_type.feet_subjectCue",
+          "trial_type.tongue_subjectCue",
+          "trial_type.lips_subjectCue",
+          "trial_type.forehead_subjectCue",
+          "trial_type.response",
+          "trans_x", "trans_y", "trans_z", "rot_x", "rot_y", "rot_z"
+        ]
+      },
+      "AutoContrasts": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead",
+          "trial_type.block_forehead2",
+        ]
+    },
+    {
+      "Level": "subject",
+      "AutoContrasts": [          
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead",
+          "trial_type.block_forehead2",
+          "trial_type.hand_subjectCue",
+          "trial_type.feet_subjectCue",
+          "trial_type.tongue_subjectCue",
+          "trial_type.lips_subjectCue",
+          "trial_type.forehead_subjectCue",
+        ],
+      "Contrasts": [
+        {
+          "Name": "AllStim",
+          "ConditionList": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead"
+          ],
+          "weights": [1, 1, 1, 1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "Hand",
+          "ConditionList": [
+          "trial_type.block_hand"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Feet",
+          "ConditionList": [
+          "trial_type.block_feet"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Tongue",
+          "ConditionList": [
+          "trial_type.block_tongue"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Lips",
+          "ConditionList": [
+          "trial_type.block_lips"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Forehead",
+          "ConditionList": [
+          "trial_type.block_forehead"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Hand_gt_Foot",
+          "ConditionList": [
+            "trial_type.block_hand",
+            "trial_type.block_feet"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "Foot_gt_Hand",
+          "ConditionList": [
+            "trial_type.block_hand",
+            "trial_type.block_feet"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "Lips_gt_Tongue",
+          "ConditionList": [
+            "trial_type.block_tongue",
+            "trial_type.block_lips"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "Tongue_gt_Lips",
+          "ConditionList": [
+            "trial_type.block_tongue",
+            "trial_type.block_lips"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "Tongue_gt_cue",
+          "ConditionList": [
+            "trial_type.block_tongue",
+            "trial_type.tongue_subjectCue"
+          ],
+          "weights": [1, -1],
+          "type": "t"
+        },
+        {
+          "Name": "cue_gt_Tongue",
+          "ConditionList": [
+            "trial_type.block_tongue",
+            "trial_type.tongue_subjectCue"
+          ],
+          "weights": [-1, 1],
+          "type": "t"
+        },
+        {
+          "Name": "Hand_gt_All",
+          "ConditionList": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead"
+          ],
+          "weights": [1, -0.25, -0.25, -0.25, -0.25],
+          "type": "t"
+        },
+        {
+          "Name": "Foot_gt_All",
+          "ConditionList": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead"
+          ],
+          "weights": [-0.25, 1, -0.25, -0.25, -0.25],
+          "type": "t"
+        },
+        {
+          "Name": "Tongue_gt_All",
+          "ConditionList": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead"
+          ],
+          "weights": [-0.25, -0.25, 1, -0.25, -0.25],
+          "type": "t"
+        },
+        {
+          "Name": "Lips_gt_All",
+          "ConditionList": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead"
+          ],
+          "weights": [-0.25, -0.25, -0.25, 1, -0.25],
+          "type": "t"
+        },
+        {
+          "Name": "Forehead_gt_All",
+          "ConditionList": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead"
+          ],
+          "weights": [-0.25, -0.25, -0.25, -0.25, 1],
+          "type": "t"
+        },
+        {
+          "Name": "ForeheadDouble_gt_All",
+          "ConditionList": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead"
+          ],
+          "weights": [-0.25, -0.25, -0.25, -0.25, 2],
+          "type": "t"
+        },
+        {
+          "Name": "Forehead2",
+          "ConditionList": [
+          "trial_type.block_forehead2"],
+          "weights": [1],
+          "type": "t"
+        },
+        {
+          "Name": "Forehead_gt_cueAndAll",
+          "ConditionList": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead",
+          "trial_type.forehead_subjectCue"
+          ],
+          "weights": [-0.25, -0.25, -0.25, -0.25, 2, -1],
+          "type": "t"
+        },
+        {
+          "Name": "Forehead2_gt_All",
+          "ConditionList": [
+          "trial_type.block_hand",
+          "trial_type.block_feet",
+          "trial_type.block_tongue",
+          "trial_type.block_lips",
+          "trial_type.block_forehead2"
+          ],
+          "weights": [-0.25, -0.25, -0.25, -0.25, 1],
+          "type": "t"
+        },
+      ]
+    }
+  ]
+}
