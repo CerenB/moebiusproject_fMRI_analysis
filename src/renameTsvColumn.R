@@ -11,7 +11,7 @@ pathToFunc <- '/Users/battal/Cerens_files/fMRI/Processed/RhythmCateg/RhythmBlock
 source(pathToFunc)
 
 
-bidsRoot <- '/Users/battal/Cerens_files/fMRI/Processed/MoebiusProject/derivatives/cpp_spm/sub-pil009' 
+bidsRoot <- '/Users/battal/Cerens_files/fMRI/Processed/MoebiusProject/derivatives/cpp_spm/sub-mbs004' 
 taskName <- 'somatotopy'
 # taskName <- 'mototopy'
 
