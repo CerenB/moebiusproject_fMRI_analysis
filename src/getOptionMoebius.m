@@ -9,12 +9,19 @@ function opt = getOptionMoebius()
         opt = [];
     end
 
-    % group of subjects to analyze
-%     opt.groups = {'mbs'};
     % suject to run in each group
-    opt.subjects = {'mbs004'}; %, 
-    
-    
+
+    opt.subjects = {'ctrl012'};
+                      % 'ctrl014', 'ctrl015', 'ctrl016','ctrl017'
+% 
+%                      
+%     opt.subjects = {'mbs001', 'mbs002', 'mbs003', 'mbs004', 'mbs005', ...
+%                    'mbs006', 'mbs007', ...
+%                     'ctrl002','ctrl003','ctrl004', 'ctrl005', 'ctrl007', ...
+%                     'ctrl008', 'ctrl009', 'ctrl010', 'ctrl011', 'ctrl012', ...
+%                     'ctrl013','ctrl015', 'ctrl016','ctrl017'};
+
+      
     % Uncomment the lines below to run preprocessing
     % - don't use realign and unwarp
     opt.realign.useUnwarp = true;
@@ -31,7 +38,6 @@ function opt = getOptionMoebius()
     % task to analyze
     % FEexe, FEobserv, LipReading, somatotopy, mototopy
 %     opt.taskName = 'mototopy';
-%     opt.taskName = 'FEobserv';
     opt.taskName = 'somatotopy';
     
 %     opt.taskName = 'somatotopyres2p3tr1p5mb3sl68'; 
@@ -62,16 +68,15 @@ function opt = getOptionMoebius()
 
   opt.result.Steps(1).Level = 'subject';
 
-  clusterSize = 0; % 0 20
-%   pvalue = 0.05;
-%   correction = 'FWE';
+  clusterSize = 20; % 0 20
+
   
   pvalueLow = 0.001; %0.01 0.001 0.05
   correctionLow = 'none'; %'none' 'FWE'
   
-% % % for somatotopy assign pvalue to pvalueLow
-  pvalue = pvalueLow;
-  correction = correctionLow;
+  % for tongue assign pvalue and correction
+  pvalue = 0.05;
+  correction = 'FWE';
   
   
   % For each contrats, you can adapt:
@@ -206,7 +211,7 @@ function opt = getOptionMoebius()
 %     
 
 % looking at only at Tongue
-
+% 
 %     opt.result.Steps(1).Contrasts(1).Name = 'Tongue_gt_All';
 %     opt.result.Steps(1).Contrasts(1).MC =  correctionLow;
 %     opt.result.Steps(1).Contrasts(1).p = pvalueLow;
@@ -225,8 +230,8 @@ function opt = getOptionMoebius()
     opt.result.Steps(1).Contrasts(2).k = clusterSize;
     
     opt.result.Steps(1).Contrasts(3).Name = 'Tongue_gt_All';
-    opt.result.Steps(1).Contrasts(3).MC =  correctionLow;
-    opt.result.Steps(1).Contrasts(3).p = pvalueLow;
+    opt.result.Steps(1).Contrasts(3).MC =  correction;
+    opt.result.Steps(1).Contrasts(3).p = pvalue;
     opt.result.Steps(1).Contrasts(3).k = clusterSize;
     
     opt.result.Steps(1).Contrasts(4).Name = 'Lips_gt_All';
@@ -238,7 +243,7 @@ function opt = getOptionMoebius()
     opt.result.Steps(1).Contrasts(5).MC =  correctionLow;
     opt.result.Steps(1).Contrasts(5).p = pvalueLow;
     opt.result.Steps(1).Contrasts(5).k = clusterSize;
-%     
+    
 %     opt.result.Steps(1).Contrasts(6).Name = 'cue_gt_Tongue';
 %     opt.result.Steps(1).Contrasts(6).MC =  correctionLow;
 %     opt.result.Steps(1).Contrasts(6).p = pvalueLow;
@@ -248,7 +253,7 @@ function opt = getOptionMoebius()
 %     opt.result.Steps(1).Contrasts(7).MC =  correctionLow;
 %     opt.result.Steps(1).Contrasts(7).p = pvalueLow;
 %     opt.result.Steps(1).Contrasts(7).k = clusterSize;
-% %     
+%     
 %   % Specify how you want your output (all the following are on false by default)
 %   opt.result.Steps(1).Output.png = true();
 % 
