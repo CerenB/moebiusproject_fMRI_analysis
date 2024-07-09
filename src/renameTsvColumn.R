@@ -2,16 +2,16 @@ rm(list=ls())
 
 library(tidyverse)
 
-# let's read tsv files and reorganize the trial_type with for loop to 
+# let's read tsv files and reorganize the trial_type with for loop to
 # make auditory cue in the trial_type to be modeled in GLM
 
-# NOTE: we make modifications in derivatives folder ! ! ! 
+# NOTE: we make modifications in derivatives folder ! ! !
 
 pathToFunc <- '/Users/battal/Cerens_files/fMRI/Processed/RhythmCateg/RhythmBlock/code/rhythmBlock_fMRI_analysis/lib/bids-R/bidsr_queryEvents.R'
 source(pathToFunc)
 
 
-bidsRoot <- '/Users/battal/Cerens_files/fMRI/Processed/MoebiusProject/derivatives/cpp_spm/sub-mbs004' 
+bidsRoot <- '/Users/battal/Cerens_files/fMRI/Processed/MoebiusProject/derivatives/cpp_spm/sub-ctrl012'
 taskName <- 'somatotopy'
 # taskName <- 'mototopy'
 
